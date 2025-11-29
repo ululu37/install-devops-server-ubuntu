@@ -59,6 +59,9 @@ gitlab-runner --version
 ```bash
 volumes = ["/cache","/var/run/docker.sock:/var/run/docker.sock"]
 environment = ["DOCKER_HOST=unix:///var/run/docker.sock"]
+
+# restart gitlab runner
+systemctl restart gitlab-runner
 ```
 ---
 ## 1️⃣ coppy file caddy-certificate

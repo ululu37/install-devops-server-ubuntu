@@ -67,3 +67,9 @@ environment = ["DOCKER_HOST=unix:///var/run/docker.sock"]
 
 scp bncc@192.168.100.3:/opt/caddy/caddy-root.crt C:/User/Public
 
+# ของ ubuntu server 
+sudo cp /opt/caddy/caddy-root.crt /usr/local/share/ca-certificates/caddy-root.crt
+
+sudo update-ca-certificates
+
+

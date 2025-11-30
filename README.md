@@ -22,7 +22,7 @@ docker run -d -p 9443:9443 --name portainer --restart=always -v /var/run/docker.
 ```
 ---
 
-###caddy
+### caddy
 
 ```bash
 sudo mkdir -p /opt/caddy

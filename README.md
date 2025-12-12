@@ -311,6 +311,7 @@ networks:
 ```
 
 - register -runner
+  
 ```bash
    #เข้ามาใน container
    docker exec -it gitlab_runner -u root -p
@@ -330,6 +331,13 @@ networks:
      
 ```
 - เเก้ config ของ runner ไห้ไช้ docker network
+  ```bash
+   #เข้ามาใน 
+  nano /opt/gitlab_runner/config.toml
+
+   #เพิ่ม
+   network_mode = "app_net"
+
   
 ---
 

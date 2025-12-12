@@ -339,6 +339,7 @@ networks:
    network_mode = "app_net"
   ```
   - ตัวอย่าง config
+    
   ```bash
  
 concurrent = 1
@@ -351,7 +352,7 @@ shutdown_timeout = 0
 [[runners]]
   name = "fd6608ff37c6"
   url = "http://gitlab"
-#  clone_url = "http://gitlab"
+
   id = 39
   token = "glrt-U0ivaesXzrajgl3imRU72W86MQpwOjIKdDozCnU6MQ8.01.170y1358m"
   token_obtained_at = 2025-12-12T07:41:56Z
@@ -370,11 +371,11 @@ shutdown_timeout = 0
     disable_entrypoint_overwrite = false
     oom_kill_disable = false
     disable_cache = false
-    #volumes = ["/cache"]
     shm_size = 0
     network_mtu = 0
     volumes = ["/cache","/var/run/docker.sock:/var/run/docker.sock"]
     network_mode = "app_net"
+	
   ```
 ---
 

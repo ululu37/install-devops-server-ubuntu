@@ -285,7 +285,7 @@ systemctl restart gitlab-runner
 - สร้างโฟเดอร์ไว้เก็บ config
 ```bash
 services:
-      mkdir -p /opt/gitlab_runner
+      mkdir -p /opt/gitlab-runner
 ```
 - docker compose
 
@@ -298,7 +298,7 @@ services:
     networks:
       - app_net
     volumes:
-      - /opt/gitlab_runner:/etc/gitlab-runner # เก็บ config.toml
+      - /opt/gitlab-runner:/etc/gitlab-runner # เก็บ config.toml
       - /var/run/docker.sock:/var/run/docker.sock
       - /opt/caddy/caddy-root.crt:/usr/local/share/ca-certificates/caddy-root.crt:ro
     environment:
@@ -314,7 +314,7 @@ networks:
   
 ```bash
    #เข้ามาใน container
-   docker exec -it gitlab_runner -u root -p
+   docker exec -it gitlab-runner -u root -p
 
    # register runner
    gitlab runner register
@@ -333,11 +333,52 @@ networks:
 - เเก้ config ของ runner ไห้ไช้ docker network
   ```bash
    #เข้ามาใน 
-  nano /opt/gitlab_runner/config.toml
+  nano /opt/gitlab-runner/config.toml
 
    #เพิ่ม
    network_mode = "app_net"
+  ```
+  - ตัวอย่าง config
+  ```bash
+ 
+concurrent = 1
+check_interval = 0
+shutdown_timeout = 0
 
-  
+[session_server]
+  session_timeout = 1800
+
+[[runners]]
+  name = "fd6608ff37c6"
+  url = "http://gitlab"
+#  clone_url = "http://gitlab"
+  id = 39
+  token = "glrt-U0ivaesXzrajgl3imRU72W86MQpwOjIKdDozCnU6MQ8.01.170y1358m"
+  token_obtained_at = 2025-12-12T07:41:56Z
+  token_expires_at = 0001-01-01T00:00:00Z
+  executor = "docker"
+  [runners.cache]
+    MaxUploadedArchiveSize = 0
+    [runners.cache.s3]
+    [runners.cache.gcs]
+    [runners.cache.azure]
+  [runners.docker]
+    host = "unix:///var/run/docker.sock"
+    tls_verify = false
+    image = "node:22"
+    privileged = false
+    disable_entrypoint_overwrite = false
+    oom_kill_disable = false
+    disable_cache = false
+    #volumes = ["/cache"]
+    shm_size = 0
+    network_mtu = 0
+    volumes = ["/cache","/var/run/docker.sock:/var/run/docker.sock"]
+    network_mode = "app_net"
+  ```
 ---
+
+
+
+
 

@@ -361,11 +361,14 @@ networks:
    docker exec -it gitlab-runner -u root -p
 
    # register runner
-   gitlab runner register
+   gitlab-runner register
 
    # ใส่ host เป็น http://gitlab จะดึง repo ผ่าน docker network
    http://gitlab
    # ใส่ token ไปเอามาจาก gitlab setting -> ci/cd -> runner -> create runner 
+
+   # runner name
+   docker
 
    # executer 
    docker

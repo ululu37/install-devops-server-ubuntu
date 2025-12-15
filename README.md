@@ -7,7 +7,7 @@
 ### docker
 
 ```bash
-apt install docker.io
+apt install docker.io -y
 
 ```
 ---

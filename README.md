@@ -139,8 +139,16 @@ scp bncc@192.168.100.3:/opt/caddy/caddy-root.crt C:/Users/Public
 # import on windo
 Import-Certificate -FilePath "C:\Users\Public\caddy-root.crt" -CertStoreLocation Cert:\LocalMachine\Root
 
-# ของ ubuntu server 
+# ของ devops server 
 sudo cp /opt/caddy/caddy-root.crt /usr/local/share/ca-certificates/caddy-root.crt
+
+sudo update-ca-certificates
+
+# ของ production server
+
+scp bncc@192.168.100.3:/opt/caddy/caddy-root.crt /opt/caddy-root.crt
+
+sudo cp /opt/caddy-root.crt /usr/local/share/ca-certificates/caddy-root.crt
 
 sudo update-ca-certificates
 

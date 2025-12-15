@@ -377,9 +377,10 @@ networks:
    network_mode = "app_net"
 
 ```
-
-    
-
+ci/cd variable
+```bash
+SSH_PRIVATE_KEY
+```
 ---
 
 

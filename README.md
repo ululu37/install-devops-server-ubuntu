@@ -262,7 +262,7 @@ cat /etc/gitlab/initial_root_password
 ```
 ---
 
-### gitlab-runner 
+# gitlab-runner 
 # native
 
 ```bash

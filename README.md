@@ -197,6 +197,24 @@ services:
 
 
 ```
+ตั้งค่า Insecure Registry ใน docker deamon
+- devops-server
+- production-server
+- dev
+  
+```bash
+
+#เข้าไปใน daemon.json
+nano /etc/docker/daemon.json
+
+{
+  "insecure-registries" : ["registry.vecskill.ovec", "registry-ui.vecskill.ovec"]
+}
+
+#restart docker
+sudo systemctl restart docker
+
+```
 ---
 
 
@@ -252,7 +270,7 @@ volumes:
 
 ```
 
-password
+password gitlab
 
 ```bash
 หรือ ไปเอาใน container
@@ -261,7 +279,25 @@ cat /etc/gitlab/initial_root_password
 
 ```
 ---
+# gen ssh-key
+ - get ที่เครื่อง devops server
+ - นำ Public Key ไปใส่ที่เครื่อง Production
+   
+```bash
+#gen ssh-key
+ssh-keygen -t ed25519
 
+#ดู public key
+cat ~/.ssh/id_ed25519.pub
+
+# วาง public key ที่นี้ ในเครื่อง production-server
+~/.ssh/authorized_keys
+
+#ดู private key
+cat ~/.ssh/id_ed25519
+
+```
+---
 # gitlab-runner 
 # native
 
@@ -311,7 +347,7 @@ networks:
 ```
 
 - register -runner
-  
+
 ```bash
    #เข้ามาใน container
    docker exec -it gitlab-runner -u root -p
@@ -331,51 +367,19 @@ networks:
      
 ```
 - เเก้ config ของ runner ไห้ไช้ docker network
-  ```bash
+  
+```bash
+
    #เข้ามาใน 
   nano /opt/gitlab-runner/config.toml
 
    #เพิ่ม
    network_mode = "app_net"
-  ```
-  - ตัวอย่าง config
+
+```
+
     
-  ```bash
-   concurrent = 1
-   check_interval = 0
-   shutdown_timeout = 0
 
-[session_server]
-  session_timeout = 1800
-
-[[runners]]
-  name = "fd6608ff37c6"
-  url = "http://gitlab"
-
-  id = 39
-  token = "glrt-U0ivaesXzrajgl3imRU72W86MQpwOjIKdDozCnU6MQ8.01.170y1358m"
-  token_obtained_at = 2025-12-12T07:41:56Z
-  token_expires_at = 0001-01-01T00:00:00Z
-  executor = "docker"
-  [runners.cache]
-    MaxUploadedArchiveSize = 0
-    [runners.cache.s3]
-    [runners.cache.gcs]
-    [runners.cache.azure]
-  [runners.docker]
-    host = "unix:///var/run/docker.sock"
-    tls_verify = false
-    image = "node:22"
-    privileged = false
-    disable_entrypoint_overwrite = false
-    oom_kill_disable = false
-    disable_cache = false
-    shm_size = 0
-    network_mtu = 0
-    volumes = ["/cache","/var/run/docker.sock:/var/run/docker.sock"]
-    network_mode = "app_net"
-	
-  ```
 ---
 
 

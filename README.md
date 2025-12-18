@@ -107,13 +107,6 @@ sudo nano /opt/caddy/Caddyfile
 	# auto_https on  # เปิดใช้งาน HTTPS อัตโนมัติ (เป็นค่าเริ่มต้นอยู่แล้ว)
 }
 
-
-dns.vecskill.ovec {
-	tls internal # บอกให้ใช้ Certificate จาก Internal CA
-	encode zstd gzip
-	reverse_proxy http://technitium-dns:5380
-}
-
 portainer.vecskill.ovec {
 	tls internal
 	encode zstd gzip

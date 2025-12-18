@@ -395,7 +395,6 @@ systemctl restart gitlab-runner
 # docker container
 - สร้างโฟเดอร์ไว้เก็บ config
 ```bash
-services:
       mkdir -p /opt/gitlab-runner
 ```
 - docker compose

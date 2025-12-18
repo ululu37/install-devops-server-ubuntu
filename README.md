@@ -36,7 +36,7 @@ apt install docker.io -y
 
 ```
 
-## เเบบ full servion
+## เเบบ full servion  (เเนะนำ)
 - Uninstall เวอร์ชั่นเก่าออก
 ```bash
 

@@ -276,7 +276,7 @@ services:
 nano /etc/docker/daemon.json
 
 {
-  "insecure-registries" : ["registry.vecskill.ovec", "registry-ui.vecskill.ovec"]
+  "insecure-registries" : ["registry.vecskill.ovec", "registry-ui.vecskill.ovec","192.168.100.110:5000","192.168.100.110:8080"]
 }
 
 #restart docker
@@ -330,8 +330,25 @@ docker pull portainer/portainer-ce:latest
 docker tag portainer/portainer-ce:latest 192.168.100.180:5000/portainer/portainer-ce:latest
 docker push 192.168.100.180:5000/portainer/portainer-ce:latest
 
+# ---------- library/node:20-alpine ----------
+docker pull node:20-alpine
+docker tag node:20-alpine localhost:5000/library/node:20-alpine
+docker push localhost:5000/library/node:20-alpine
 
+# ---------- library/docker:26-dind ----------
+docker pull docker:26-dind
+docker tag docker:26-dind localhost:5000/library/docker:26-dind
+docker push localhost:5000/library/docker:26-dind
 
+# ---------- library/docker:26 ----------
+docker pull docker:26
+docker tag docker:26 localhost:5000/library/docker:26
+docker push localhost:5000/library/docker:26
+
+# ---------- library/alpine-ssh:latest ----------
+docker pull panubo/sshd:latest
+docker tag panubo/sshd:latest localhost:5000/library/alpine-ssh:latest
+docker push localhost:5000/library/alpine-ssh:latest
 ```
 ---
 
